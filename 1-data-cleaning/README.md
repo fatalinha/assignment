@@ -8,7 +8,7 @@ The given corpus is very noisy. Main issues:
 
 ## Approach:
 1) Fix issues 
-2) Filter
+2) Filter out problematic sentences
 
 ## Fix
 Bifixer https://github.com/bitextor/bifixer
@@ -25,11 +25,11 @@ April 1961:     April 1961:     **00714cc78651a098**        73.0
 April 2002      April 2013      **00714cc78651a098**        73.3
 
 ## Filter
-1) Remove duplicates and keep only source-target text
+1) Remove duplicates based on same hashes and keep only source-target text 
 
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
-2) Hard-rule classifier
+2) Bicleaner https://github.com/bitextor/bicleaner Hard-rule classifier
 
 `bicleaner-hardrules --annotated_output --disable_porn_removal -s de -t en --scol 1 --tcol 2 --metadata ../../en-de/de-en.yaml corpus.nondup.clean.en-de.txt corpus.hard`
 
