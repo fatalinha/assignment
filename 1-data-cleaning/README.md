@@ -2,15 +2,16 @@
 The given corpus is very noisy. Main issues:
 * Bad text: encoding, spelling, trailing spaces
 * Wrong language in source or target
-* Misalingments
+* Misalignments
 * Low-value segments: Non-text characters, non-fluent text
 * Offensive language
 
 ## Approach:
-1) Fix issues, 2) Filter
+1) Fix issues 
+2) Filter
 
 ## Fix
-[Bifixer] https://github.com/bitextor/bifixer
+Bifixer https://github.com/bitextor/bifixer
 * Fix issues (spelling, HTML, tokenisation etc), normalise punctuation, remove empty
 * resegment long lines (>15 words)
 * detect (near-)duplicates using hashes (using --aggressive_dedup)
@@ -20,13 +21,12 @@ The given corpus is very noisy. Main issues:
 
 ### Duplicates and hashes:
 
-April 1961:     April 1961:     00714cc78651a098        73.0
-
-April 2002      April 2013      00714cc78651a098        73.3
+`April 1961:     April 1961:     00714cc78651a098        73.0
+April 2002      April 2013      00714cc78651a098        73.3`
 
 ## Filter
 1) Remove duplicates and keep only source-target text
-2) 
+
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
 2) Hard-rule classifier
