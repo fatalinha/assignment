@@ -16,7 +16,7 @@ Bifixer https://github.com/bitextor/bifixer
 * resegment long lines (>15 words)
 * detect (near-)duplicates using hashes (using --aggressive_dedup)
 
-`python /home/alin/software/bifixer/bifixer/bifixer.py /home/alin/Desktop/phrase/assignment/1-data-cleaning/corpus.de-en.txt /home/alin/Desktop/phrase/assignment/1-data-cleaning/corpus.fixed-dedup.en-de.txt de en --aggressive_dedup --scol 1 --tcol 2`
+`python bifixer/bifixer.py corpus.de-en.txt corpus.fixed-dedup.txt de en --aggressive_dedup --scol 1 --tcol 2`
 
 
 #### Duplicates and hashes:
