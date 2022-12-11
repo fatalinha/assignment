@@ -30,9 +30,13 @@ April 2002      April 2013      **00714cc78651a098**        73.3
 
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
-2) Bicleaner https://github.com/bitextor/bicleaner Hard-rule classifier
+2) Bicleaner https://github.com/bitextor/bicleaner 
+Hard-rule classifier to filter out:
+- problematic sentences (too long, too short, with large S/T length ratio, containing worng language
+- low-value sentences (only non-text, numbers, titles, breadcrumps, non-fluent sentences based on LM score)
+- porn filter (implemented separately): removes sentences containing [^fuck.\*, ^ass$, ^cock$]
 
-`bicleaner-hardrules --annotated_output --disable_porn_removal -s de -t en --scol 1 --tcol 2 --metadata ../../en-de/de-en.yaml corpus.nondup.clean.en-de.txt corpus.hard`
+`bicleaner-hardrules --annotated_output --disable_porn_removal -s de -t en --scol 1 --tcol 2 --metadata de-en.yaml corpus.nodup.en-de.txt corpus.hard`
 
 |          Filter     	| Sentences |
 |-----------------------|-----------|
@@ -63,7 +67,7 @@ April 2002      April 2013      **00714cc78651a098**        73.3
 | no_bad_encoding(right)	| 578 |
 | no_breadcrumbs(left) |	466 |
 | no_space_noise(left)	| 339 |
-no_breadcrumbs(right)	| 330 |
+| no_breadcrumbs(right)	| 330 |
 | no_space_noise(right)	| 247 |
 | porn	| 52 |
 | no_escaped_unicode(left) |	19 |
