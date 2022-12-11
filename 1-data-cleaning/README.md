@@ -22,6 +22,7 @@ Bifixer https://github.com/bitextor/bifixer
 ### Duplicates and hashes:
 
 April 1961:     April 1961:     **00714cc78651a098**        73.0
+
 April 2002      April 2013      **00714cc78651a098**        73.3
 
 ## Filter
