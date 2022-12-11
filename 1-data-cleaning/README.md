@@ -21,8 +21,8 @@ Bifixer https://github.com/bitextor/bifixer
 
 ### Duplicates and hashes:
 
-`April 1961:     April 1961:     00714cc78651a098        73.0
-April 2002      April 2013      00714cc78651a098        73.3`
+April 1961:     April 1961:     **00714cc78651a098**        73.0
+April 2002      April 2013      **00714cc78651a098**        73.3
 
 ## Filter
 1) Remove duplicates and keep only source-target text
@@ -67,8 +67,7 @@ no_breadcrumbs(right)	| 330 |
 | porn	| 52 |
 | no_escaped_unicode(left) |	19 |
 | no_escaped_unicode(right)	| 2 |
-|-------------------------|--------|
-| Total	            | 744517 |
+| **Total**	            | 744517 |
 
 
 ## Statistics:
