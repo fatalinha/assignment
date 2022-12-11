@@ -19,14 +19,18 @@ The given corpus is very noisy. Main issues:
 
 
 ### Duplicates and hashes:
+
 April 1961:     April 1961:     00714cc78651a098        73.0
+
 April 2002      April 2013      00714cc78651a098        73.3
 
 ## Filter
 1) Remove duplicates and keep only source-target text
+2) 
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
 2) Hard-rule classifier
+
 `bicleaner-hardrules --annotated_output --disable_porn_removal -s de -t en --scol 1 --tcol 2 --metadata ../../en-de/de-en.yaml corpus.nondup.clean.en-de.txt corpus.hard`
 
 |          Filter     	| Sentences |
@@ -69,6 +73,7 @@ no_breadcrumbs(right)	| 330 |
 
 ## Statistics:
 | Corpus  | Sentences |  Words |
+|----------|----------|--------|
 | Original | 1039252 | 19641988 |
 | Resegmentation and fix | 1067502 | 21487686 |
 | Remove duplicates | 917328 | 18191989 |
