@@ -31,7 +31,7 @@ April 2002      April 2013      **00714cc78651a098**        73.3
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
 2) Bicleaner https://github.com/bitextor/bicleaner 
-3) 
+ 
 Download language pack en-de from https://github.com/bitextor/bicleaner-data/releases/download/v1.5/en-de.tar.gz
 
 Hard-rule classifier to filter out:
