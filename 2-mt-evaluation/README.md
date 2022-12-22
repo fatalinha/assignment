@@ -4,13 +4,14 @@ Comparison of two system outputs. Since no linguistic knowledge of the target is
 
 ## Automatic scores
 We select the automatic metrics to run in such a way that they can mirror different aspects of the outputs.
-- BLEU - n-gram string similarity
-- chrF2 - Character F score
-- TER   - edit-distance-based
-- COMET - embedding-based, also considers source
+- **BLEU** - n-gram string similarity
+- **chrF2** - Character F score
+- **TER**   - edit-distance-based
+- **COMET** - embedding-based, also considers source
 
-SacreBLEU: Compute BLEU, chrF2, TER and bootstrap resampling test. 
-`sacrebleu `
+SacreBLEU (https://github.com/mjpost/sacreBLEU): Compute BLEU, chrF2, TER and bootstrap resampling test. 
+
+`sacrebleu  reference.txt -i system1.txt system2.txt -m bleu chrf ter `
 
 Note: COMET is obtained through MT-telescope (see below)
 
