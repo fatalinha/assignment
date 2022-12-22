@@ -12,4 +12,4 @@ Comparison of two system outputs. Since no linguistic knowledge of the target is
 ## Inspection through MT-telescope
  telescope compare -s source.txt -x system1.txt -y system2.txt -r reference.txt -l ro -m COMET -o .
  
- ![alttext]()
+ ![Bucket analysis of the COMET scores for the two system outputs](https://github.com/fatalinha/assignment/blob/main/2-mt-evaluation/bucket-analysis.png)
