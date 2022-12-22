@@ -7,41 +7,40 @@ The given corpus is very noisy. Main issues:
 * Offensive language
 
 ## Approach
-1) Fix issues 
+1) Fix issues to preserve possibly useful content
 2) Filter out problematic sentences
 
 ### Fix
-Bifixer https://github.com/bitextor/bifixer
+Fixing the issues is dome with the tool Bifixer https://github.com/bitextor/bifixer
 * Fix issues (spelling, HTML, tokenisation etc), normalise punctuation, remove empty
 * resegment long lines (>15 words)
 * detect (near-)duplicates using hashes (using --aggressive_dedup)
 
 `python bifixer/bifixer.py corpus.de-en.txt corpus.fixed-dedup.txt de en --aggressive_dedup --scol 1 --tcol 2`
 
-
-#### Duplicates and hashes:
-
-April 1961:     April 1961:     **00714cc78651a098**        73.0
-
-April 2002      April 2013      **00714cc78651a098**        73.3
-
 ### Filter
-1) Remove duplicates based on same hashes and keep only source-target text 
+1) Remove duplicates based on identical hashes and keep only the source-target text in the file 
+
+The two following segments have the same hash even if they are not identical. This means that they are identified as near-duplicates and can be removed.
+
+| Source | Target | Hash | Score |
+| April 1961:  |   April 1961:  |   **00714cc78651a098**  |      73.0 |
+| April 2002   |   April 2013   |   **00714cc78651a098**    |    73.3 |
 
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
 
-2) Bicleaner https://github.com/bitextor/bicleaner 
+2) Now that duplicates are removed, we use Bicleaner https://github.com/bitextor/bicleaner to score segments based on some criteria.
  
-Download language pack en-de from https://github.com/bitextor/bicleaner-data/releases/download/v1.5/en-de.tar.gz
+Download language pack en-de from https://github.com/bitextor/bicleaner-data/releases/download/v1.5/en-de.tar.gz. Use the metadata file provided in this repository.
 
-Hard-rule classifier to filter out:
-- problematic sentences (too long, too short, with large S/T length ratio, containing worng language
+We use a hard-rule classifier to filter out:
+- problematic sentences (too long, too short, with large S/T length ratio, containing wrong language)
 - low-value sentences (only non-text, numbers, titles, breadcrumps, non-fluent sentences based on LM score)
 - porn filter (implemented separately): removes sentences containing [^fuck.\*, ^ass$, ^cock$]
 
 `bicleaner-hardrules --annotated_output --disable_porn_removal -s de -t en --scol 1 --tcol 2 --metadata de-en.yaml corpus.nodup.en-de.txt corpus.hard`
 
-|          Filter     	| Sentences |
+|          Filter     	| Sentences filtered |
 |-----------------------|-----------|
 | not_too_short(left) |	174893 |
 | no_wrong_language(left) |	169610 |
@@ -78,7 +77,7 @@ Hard-rule classifier to filter out:
 | **Total**	            | 744517 |
 
 
-## Statistics:
+## Corpus Statistics:
 | Corpus  | Sentences |  Words |
 |----------|----------|--------|
 | Original | 1039252 | 19641988 |
@@ -89,6 +88,7 @@ Hard-rule classifier to filter out:
 The clean corpus can be found here: https://u.pcloud.link/publink/show?code=XZ8c0DVZNoP1OUl0IvkJPVdDcBodwhNRbGHX
 
 ## Further issues: Misalignments
+Now that problematic and low-value segments are removed, the next step is to recognise segments that are not translations of each other (misaligned segments). There are different possible approaches to this problem:
 - Check for number and punctuation mismatches
 - Sentence embedding cosine similarity source-target e.g. using LASER embeddings
 - Translate source sentence with MT and compare to similarity to target (surface metrics or embeddings)
