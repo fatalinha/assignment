@@ -24,7 +24,8 @@ Fixing the issues is dome with the tool Bifixer https://github.com/bitextor/bifi
 The two following segments have the same hash even if they are not identical. This means that they are identified as near-duplicates and can be removed.
 
 | Source | Target | Hash | Score |
-| April 1961:  |   April 1961:  |   **00714cc78651a098**  |      73.0 |
+|--------|--------|------|-----------|
+| April 1961:  |   April 1961:  |   **00714cc78651a098**  |    73.0 |
 | April 2002   |   April 2013   |   **00714cc78651a098**    |    73.3 |
 
 `sort -t $'\t' -k 3,3 -u corpus.fixed-dedup.en-de.txt | cut -d $'\t' -f1,2 > corpus.nodup.en-de.txt`
@@ -83,7 +84,7 @@ We use a hard-rule classifier to filter out:
 | Original | 1039252 | 19641988 |
 | Resegmentation and fix | 1067502 | 21487686 |
 | Remove duplicates | 917328 | 18191989 |
-| Hard rules | 172811  | 5343510 |
+| Hard rules (final) | 172811  | 5343510 |
 
 The clean corpus can be found here: https://u.pcloud.link/publink/show?code=XZ8c0DVZNoP1OUl0IvkJPVdDcBodwhNRbGHX
 
