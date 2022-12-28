@@ -32,7 +32,8 @@ Metric signatures
     TER nrefs:1|bs:1000|seed:12345|case:lc|tok:tercom|norm:no|punct:yes|asian:no|version:2.0.0
 
 ## Inspection through MT-telescope
-The automatic metrics showed that the output of system 1 is better than system 2 based on the provided reference (and source). But let's further analyse and compare the outputs and the segments based on COMET. We use MT-telescope https://github.com/Unbabel/MT-Telescope . 
+The automatic metrics showed that the output of system 1 is better than system 2 based on the provided reference (and source). But let's further analyse and compare the outputs and the segments based on COMET. We use MT-telescope https://github.com/Unbabel/MT-Telescope.
+
  ` telescope compare -s source.txt -x system1.txt -y system2.txt -r reference.txt -l ro -m COMET -o .`
  
  
