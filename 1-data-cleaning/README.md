@@ -77,6 +77,7 @@ We use a hard-rule classifier to filter out:
 | no_escaped_unicode(right)	| 2 |
 | **Total**	            | 744517 |
 
+As shown in the table of filtered sentences, the main issues are too short segments, unbalanced sentence ratio, wrong language and unfluent segments.
 
 ## Corpus Statistics:
 | Corpus  | Sentences |  Words |
@@ -89,7 +90,7 @@ We use a hard-rule classifier to filter out:
 The clean corpus can be found here: https://u.pcloud.link/publink/show?code=XZ8c0DVZNoP1OUl0IvkJPVdDcBodwhNRbGHX
 
 ## Further issues: Misalignments
-Now that problematic and low-value segments are removed, the next step is to recognise segments that are not translations of each other (misaligned segments). There are different possible approaches to this problem:
-- Check for number and punctuation mismatches
+We may have removed a lot of problematic and low-value segments, but we can still observe many segments in which the source-target are not translations of each other  (misaligned segments). So the next step is to identify these segments. There are different possible approaches to this problem:
+- Check for number and punctuation mismatches between source-target
 - Sentence embedding cosine similarity source-target e.g. using LASER embeddings
-- Translate source sentence with MT and compare to similarity to target (surface metrics or embeddings)
+- Translate source sentence with MT and compare to similarity to target (either using surface metrics or embeddings)
